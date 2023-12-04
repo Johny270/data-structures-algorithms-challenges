@@ -39,3 +39,5 @@ const isPalindrome = function(x) {
         return true 
     } else return false
 }
+
+// source: leetcode
