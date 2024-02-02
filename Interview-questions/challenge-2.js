@@ -13,48 +13,49 @@
 
 // Implementation of a Queue
 class Queue {
-    constructor() {
-        this.elements = [];
-        this.head = 0;
-        this.tail = 0;
-    }
-    enqueue(element) {
-        this.elements.push(element);
-        this.tail++
-    }
-    dequeue() {
-        const item = this.elements.shift(this.head);
-        this.head++;
-        return item;
-    }
-    peek() {
-        return this.elements[this.head];
-    }
-    get length() {
-        return this.tail - this.head;
-    }
-    get isEmpty() {
-        return this.length === 0;
-    }
+	constructor() {
+		this.elements = [];
+		this.head = 0;
+		this.tail = 0;
+	}
+	enqueue(element) {
+		this.elements.push(element);
+		this.tail++;
+	}
+	dequeue() {
+		const item = this.elements.shift(this.head);
+		this.head++;
+		return item;
+	}
+	peek() {
+		return this.elements[this.head];
+	}
+	get length() {
+		return this.tail - this.head;
+	}
+	get isEmpty() {
+		return this.length === 0;
+	}
 }
 
+// Solution using queue
 function indexProducts(arr) {
-    let queue = new Queue();
-    let result = [];
+	let queue = new Queue();
+	let result = [];
 
-    for(let i = 0; i < arr.length; i++) {
-        queue.enqueue(arr.filter(item => item !== arr[i]));
-    }
-    let product = 1;
-    
-    while(queue.length !== 0) {
-        const currItem = queue.dequeue();
-        for(let k = 0; k < currItem.length; k++) {
-            product *= currItem[k];
-        }
-        result.push(product);
-        product = 1;
-    }
+	for (let i = 0; i < arr.length; i++) {
+		queue.enqueue(arr.filter((item) => item !== arr[i]));
+	}
+	let product = 1;
 
-    return result;
+	while (queue.length !== 0) {
+		const currItem = queue.dequeue();
+		for (let k = 0; k < currItem.length; k++) {
+			product *= currItem[k];
+		}
+		result.push(product);
+		product = 1;
+	}
+
+	return result;
 }
