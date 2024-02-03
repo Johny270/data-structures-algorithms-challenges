@@ -10,30 +10,30 @@
 */
 
 function firstMissingInteger(arr) {
-    let memory = {};
+	let memory = {};
 
-    for(let i = 0; i < arr.length; i++) {
-        memory[arr[i]] = true;
-    }
+	for (let i = 0; i < arr.length; i++) {
+		memory[arr[i]] = true;
+	}
 
-    let currentMissingValue = Math.max(...arr);
-    
-    for(let j = 0; j < arr.length; j++) {
-        // check cases where arr[j] = 1 and arr[j] > 1
-        if(arr[j] === 1) {
-            if(!memory[arr[j] + 1] && currentMissingValue >= (arr[j] + 1)) {
-                    currentMissingValue = arr[j] + 1;
-            }
-        } else if(arr[j] > 1) {
-            if(!memory[arr[j] - 1] && currentMissingValue > arr[j] - 1) {
-                currentMissingValue = arr[j] - 1;
-            } else {
-                currentMissingValue = arr[j] + 1;
-            }
-        }
-    }
-    
-    return currentMissingValue;
+	let currentMissingValue = Math.max(...arr);
+
+	for (let j = 0; j < arr.length; j++) {
+		// check cases where arr[j] = 1 and arr[j] > 1
+		if (arr[j] === 1) {
+			if (!memory[arr[j] + 1] && currentMissingValue >= arr[j] + 1) {
+				currentMissingValue = arr[j] + 1;
+			}
+		} else if (arr[j] > 1) {
+			if (!memory[arr[j] - 1] && currentMissingValue > arr[j] - 1) {
+				currentMissingValue = arr[j] - 1;
+			} else {
+				currentMissingValue = arr[j] + 1;
+			}
+		}
+	}
+
+	return currentMissingValue;
 }
 
 // console.log(firstMissingInteger([1, 3, 5, -1, 1])) -  Test Case where there are duplicates and
